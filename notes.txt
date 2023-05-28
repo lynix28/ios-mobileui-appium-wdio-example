@@ -1,0 +1,14 @@
+Requirements:
+- XCode (for Simulator)
+- https://github.com/appium/appium-xcuitest-driver
+- - npm install -g appium-webdriveragent (to connect with the Simulator) (jika setelah install xcuitest-driver masih error)
+
+Desire Capabilities:
+{
+  "platformName": "iOS",
+  "app": "/Users/madebagussatriawibawa/GITHUB/ios-mobileui-appium-wdio-example/simulator-ios.zip",
+  "deviceName": "iPhone8",
+  "deviceOrientation": "portrait",
+  "platformVersion": "16.2",
+  "automationName": "XCUITest"
+}
