@@ -6,7 +6,8 @@ const testSuite = {
 	],
 	sanityTest: [
 		[
-			
+			'./tests/TS-002-MainPage.js',
+			'./tests/TS-003-SideMenu.js'
 		]
 	],
 	negativeTest: [

@@ -23,6 +23,7 @@
     "@wdio/mocha-framework": "^8.10.4",
     "@wdio/sauce-service": "^8.10.5",
     "allure-commandline": "^2.22.1",
-    "appium": "^1.22.3"
+    "appium": "^2.0.0-beta.71",
+    "appium-xcuitest-driver": "^4.30.1"
   }
 }
