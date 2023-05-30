@@ -59,6 +59,13 @@ or follow this instruction to make it automatically -> https://webdriver.io/docs
 | `npm run test -- --suite SuiteName` | Run a specific Test Suite Bundle (need to define it inside 'wdio.conf.js') |
 | `npm run test -- --spec ./path/to/file/FileName` | Run a specific Test Case / Suite (need to define it inside 'wdio.conf.js') |
 
+<h3><ins>Common issue that probably occured after the setup</h3>
+
+If u get this error
+`Error: "ts-node/esm/transpile-only 'resolve'" did not call the next hook in its chain and did not explicitly signal a short circuit. If this is intentional, include 'shortCircuit: true' in the hook's return.`
+try to fix it with
+`npm install --save-dev ts-node`
+
 <h3><ins>To check the report</h3>
   
 - `npm run report`

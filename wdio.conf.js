@@ -301,6 +301,11 @@ exports.config = {
 				() => reject(reportError),
 				5000);
 	
+			generation.on('error', function(error) { // handle errors properly with "error" event instead of "exit"
+				clearTimeout(generationTimeout);
+				reject(error);
+			});
+			
 			generation.on('exit', function(exitCode) {
 				clearTimeout(generationTimeout);
 	
