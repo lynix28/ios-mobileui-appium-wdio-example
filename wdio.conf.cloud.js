@@ -12,7 +12,7 @@ const cloudCapabilities = {
 	'appium:deviceOrientation': 'portrait',
 	'sauce:options': {
 		appiumVersion: '2.0.0-beta56',
-		build: `v1.${process.env.BUILD}`,
+		build: `ios.v1.${process.env.BUILD}`,
 		name: process.env.BUILDNAME,
 		public: 'public', // job visibility; public | team | private
 		passed: true

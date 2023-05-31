@@ -1,0 +1,38 @@
+version: 2.1
+jobs:
+  Testing:
+    docker:
+      - image: pridecontrol/wdio:1.0.0
+        auth:
+          username: $USERNAME
+          password: $PASSWORD
+    steps:
+      - checkout
+      - run:
+          name: "Setup Environment Variable"
+          command: |
+            echo "SAUCE_USERNAME=$SAUCE_USERNAME" > .env
+            echo "SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY" >> .env
+            echo "BUILD=$CIRCLE_BUILD_NUM" >> .env
+            echo "BUILDNAME=Testing" >> .env
+            echo "$CIRCLE_BUILD_NUM"
+      - run:
+          name: "Prepare Test"
+          command: |
+            cp -r . /app/
+      - run:
+          name: "Running Test"
+          command: |
+            cd /app/
+            npm run cloud
+      - run:
+          name: "Wrapping Test Result"
+          command: |
+            tar -cvf artifact.tar /app/allure-report/
+      - store_artifacts:
+          path: artifact.tar
+          
+workflows:
+  Test-Workflow:
+    jobs:
+      - Testing

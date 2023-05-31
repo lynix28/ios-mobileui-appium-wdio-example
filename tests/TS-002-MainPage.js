@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const expect = require('chai').expect; 
 const mainMenu = require('../resources/pages/main-page/selector.js');
 const assert = require('../resources/pages/main-page/assert.js');
@@ -17,13 +18,13 @@ describe('TS-002 | Main Menu', function() {
 	});
 
 	it('TC-002 | The page is scrollable', async function() {
-		await mainMenu.scrollView.touchAction([
+		await driver.touchAction([
 			{action: 'press', x: 172, y: 548},
 			{action: 'wait', ms: 500},
 			{action: 'moveTo', x: 190, y: 83},
 			'release'
 		]);
-		await mainMenu.scrollView.touchAction([
+		await driver.touchAction([
 			{action: 'press', x: 186, y: 83},
 			{action: 'wait', ms: 500},
 			{action: 'moveTo', x: 172, y: 548},
