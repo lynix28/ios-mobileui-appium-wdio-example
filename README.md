@@ -1,6 +1,6 @@
 # iOS MobileUI Automation Test Project Example with Appium & WebdriverIO
-<!-- [![CircleCI](https://dl.circleci.com/status-badge/img/gh/lynix28/android-mobileui-appium-wdio-example/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/lynix28/android-mobileui-appium-wdio-example/tree/master)
-[![SauceLabs](https://img.shields.io/badge/integrated%20to-SauceLabs-red)](https://app.saucelabs.com/u/oauth-lynixizunia-7ba4e) -->
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/lynix28/ios-mobileui-appium-wdio-example/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/lynix28/ios-mobileui-appium-wdio-example/tree/master)
+[![SauceLabs](https://img.shields.io/badge/integrated%20to-SauceLabs-red)](https://app.saucelabs.com/u/oauth-lynixizunia-7ba4e)
 
 <h3><ins>Requirements</h3>
   
@@ -63,6 +63,7 @@ or follow this instruction to make it automatically -> https://webdriver.io/docs
 
 If u get this error
 `Error: "ts-node/esm/transpile-only 'resolve'" did not call the next hook in its chain and did not explicitly signal a short circuit. If this is intentional, include 'shortCircuit: true' in the hook's return.`
+
 try to fix it with
 `npm install --save-dev ts-node`
 
@@ -70,10 +71,10 @@ try to fix it with
   
 - `npm run report`
 
-<!-- <h3><ins>How the report look like?</h3>
+<h3><ins>How the report look like?</h3>
 
 <ins>Allure Report
-<img width="1435" alt="image" src="https://github.com/lynix28/android-mobileui-appium-wdio-example/assets/102797648/47ad7431-58e5-4dc8-ae5c-43212c9487ea">
-  
+![image](https://github.com/lynix28/ios-mobileui-appium-wdio-example/assets/102797648/e56c37f0-e265-490b-b062-a54334501278)
+
 <ins>SauceLabs Build & Test Status
-<img width="1164" alt="image" src="https://github.com/lynix28/android-mobileui-appium-wdio-example/assets/102797648/dcb28ea8-0abb-4696-a313-14adc177b369"> -->
+![image](https://github.com/lynix28/ios-mobileui-appium-wdio-example/assets/102797648/cc8cf331-91cd-4d44-89f8-80204cfb3675)
