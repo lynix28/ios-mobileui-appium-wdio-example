@@ -2,7 +2,7 @@ Sample Desire Capabilities:
 
 {
   "platformName": "iOS",
-  "app": "/Users/madebagussatriawibawa/GITHUB/ios-mobileui-appium-wdio-example/simulator-ios.zip",
+  "app": "./simulator-ios.zip",
   "deviceName": "iPhone8",
   "deviceOrientation": "portrait",
   "platformVersion": "16.2",
