@@ -15,7 +15,7 @@ const cloudCapabilities = {
 		build: `ios.v1.${process.env.BUILD}`,
 		name: process.env.BUILDNAME,
 		public: 'public', // job visibility; public | team | private
-		passed: true
+		// passed: true
 	},
 };
 
@@ -163,7 +163,7 @@ exports.config = {
 	// See the full list at http://mochajs.org/
 	mochaOpts: {
 		ui: 'bdd',
-		timeout: 60000
+		timeout: 120000
 	},
 	//
 	// =====

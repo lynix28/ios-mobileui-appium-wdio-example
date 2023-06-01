@@ -24,7 +24,24 @@ describe('TS-003 | Side Menu', function() {
 		expect(logoutText).equal(assert.attribute.logoutText, logoutText);
 	});
 
-	it('TC-002 | Access "About Page"', async function() {
+	it('TC-002 | The page is scrollable', async function() {
+		// eslint-disable-next-line no-undef
+		await driver.touchAction([
+			{action: 'press', x: 170, y: 412},
+			{action: 'wait', ms: 500},
+			{action: 'moveTo', x: 175, y: 189},
+			'release'
+		]);
+		// eslint-disable-next-line no-undef
+		await driver.touchAction([
+			{action: 'press', x: 210, y: 134},
+			{action: 'wait', ms: 500},
+			{action: 'moveTo', x: 201, y: 385},
+			'release'
+		]);
+	});
+
+	it('TC-003 | Access "About Page"', async function() {
 		await sideMenu.about.waitForExist({ timeout: 30000 });
 		await sideMenu.about.touchAction('tap');
 	});

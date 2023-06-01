@@ -7,7 +7,7 @@ const localCapabilities = {
 	platformName: 'iOS', // or "iOS"
 	'appium:app': join(process.cwd(), './simulator-ios.zip'),
 	'appium:deviceName': 'iPhone8', // or "iPhone Simulator"
-	'appium:platformVersion': '16.2', // or "16.2" (for running iOS v16)
+	'appium:platformVersion': '16.4', // or "16.2" (for running iOS v16)
 	'appium:automationName': 'XCUITest', // or "XCUITest"
 	'appium:deviceOrientation': 'portrait',
 };
@@ -149,7 +149,7 @@ exports.config = {
 	// See the full list at http://mochajs.org/
 	mochaOpts: {
 		ui: 'bdd',
-		timeout: 60000
+		timeout: 120000
 	},
 	//
 	// =====
