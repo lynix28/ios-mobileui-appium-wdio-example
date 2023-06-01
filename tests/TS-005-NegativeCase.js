@@ -49,7 +49,7 @@ describe('TS-005 | Negative Case', function() {
 		await login.usernameInputField.waitForExist({ timeout: 30000 });
 		await login.usernameInputField.clearValue();
 		await login.usernameInputField.touchAction('tap');
-		await keyboard.keys.waitForExist({ timeout: 30000 });
+		await keyboard.returnKey.waitForExist({ timeout: 30000 });
 		await keyboard.a.touchAction('tap');
 		await keyboard.l.touchAction('tap');
 		await keyboard.i.touchAction('tap');
@@ -76,7 +76,7 @@ describe('TS-005 | Negative Case', function() {
 		await login.passwordInputField.waitForExist({ timeout: 30000 });
 		await login.passwordInputField.clearValue();
 		await login.passwordInputField.touchAction('tap');
-		await keyboard.keys.waitForExist({ timeout: 30000 });
+		await keyboard.returnKey.waitForExist({ timeout: 30000 });
 		await keyboard.more.touchAction('tap');
 		await keyboard.one.touchAction('tap');
 		await keyboard.zero.touchAction('tap');

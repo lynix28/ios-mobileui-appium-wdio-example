@@ -34,7 +34,7 @@ describe('TS-004 | Login & Logout', function() {
 	it('TC-002 | Success Login', async function() {
 		await login.usernameInputField.waitForExist({ timeout: 30000 });
 		await login.usernameInputField.touchAction('tap');
-		await keyboard.keys.waitForExist({ timeout: 30000 });
+		await keyboard.returnKey.waitForExist({ timeout: 30000 });
 		await keyboard.b.touchAction('tap');
 		await keyboard.o.touchAction('tap');
 		await keyboard.b.touchAction('tap');
@@ -58,7 +58,7 @@ describe('TS-004 | Login & Logout', function() {
 
 		await login.passwordInputField.waitForExist({ timeout: 30000 });
 		await login.passwordInputField.touchAction('tap');
-		await keyboard.keys.waitForExist({ timeout: 30000 });
+		await keyboard.returnKey.waitForExist({ timeout: 30000 });
 		await keyboard.more.touchAction('tap');
 		await keyboard.one.touchAction('tap');
 		await keyboard.zero.touchAction('tap');
