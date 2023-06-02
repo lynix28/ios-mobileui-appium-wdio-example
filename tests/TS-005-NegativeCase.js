@@ -4,6 +4,7 @@ const sideMenu = require('../resources/pages/side-menu/selector.js');
 const login = require('../resources/pages/login/selector.js');
 const loginAssert = require('../resources/pages/login/assert.js');
 const keyboard = require('../resources/shared/keyboard.js');
+const variable = require('../resources/shared/variable.js');
 
 describe('TS-005 | Negative Case', function() {
 	it('TC-001 | Failed Login - Invalid Credential', async function() {
@@ -16,19 +17,19 @@ describe('TS-005 | Negative Case', function() {
 		await login.usernameInputField.waitForExist({ timeout: 30000 });
 		await login.usernameInputField.clearValue();
 		await login.usernameInputField.touchAction('tap');
-		await keyboard.keys.waitForExist({ timeout: 30000 });
-		await keyboard.a.touchAction('tap');
-		await keyboard.b.touchAction('tap');
-		await keyboard.c.touchAction('tap');
+		await keyboard.returnKey.waitForExist({ timeout: 30000 });
+		let checkUsername;
+		do {
+			await login.usernameInputField.addValue(variable.data.invalidUsername);
+			checkUsername = await login.usernameInputField.getText();
+		} while (checkUsername != variable.data.invalidUsername);
 		await keyboard.returnKey.touchAction('tap');
 
 		await login.passwordInputField.waitForExist({ timeout: 30000 });
 		await login.passwordInputField.clearValue();
 		await login.passwordInputField.touchAction('tap');
-		await keyboard.keys.waitForExist({ timeout: 30000 });
-		await keyboard.a.touchAction('tap');
-		await keyboard.b.touchAction('tap');
-		await keyboard.c.touchAction('tap');
+		await keyboard.returnKey.waitForExist({ timeout: 30000 });
+		await login.passwordInputField.addValue(variable.data.invalidPassword);
 		await keyboard.returnKey.touchAction('tap');
 
 		await login.loginButton.waitForExist({ timeout: 30000 });
@@ -50,42 +51,18 @@ describe('TS-005 | Negative Case', function() {
 		await login.usernameInputField.clearValue();
 		await login.usernameInputField.touchAction('tap');
 		await keyboard.returnKey.waitForExist({ timeout: 30000 });
-		await keyboard.a.touchAction('tap');
-		await keyboard.l.touchAction('tap');
-		await keyboard.i.touchAction('tap');
-		await keyboard.c.touchAction('tap');
-		await keyboard.e.touchAction('tap');
-		await keyboard.more.touchAction('tap');
-		await keyboard.at.touchAction('tap');
-		await keyboard.more.touchAction('tap');
-		await keyboard.e.touchAction('tap');
-		await keyboard.x.touchAction('tap');
-		await keyboard.a.touchAction('tap');
-		await keyboard.m.touchAction('tap');
-		await keyboard.p.touchAction('tap');
-		await keyboard.l.touchAction('tap');
-		await keyboard.e.touchAction('tap');
-		await keyboard.more.touchAction('tap');
-		await keyboard.dot.touchAction('tap');
-		await keyboard.more.touchAction('tap');
-		await keyboard.c.touchAction('tap');
-		await keyboard.o.touchAction('tap');
-		await keyboard.m.touchAction('tap');
+		let checkUsername;
+		do {
+			await login.usernameInputField.addValue(variable.data.blockedUsername);
+			checkUsername = await login.usernameInputField.getText();
+		} while (checkUsername != variable.data.blockedUsername);
 		await keyboard.returnKey.touchAction('tap');
 
 		await login.passwordInputField.waitForExist({ timeout: 30000 });
 		await login.passwordInputField.clearValue();
 		await login.passwordInputField.touchAction('tap');
 		await keyboard.returnKey.waitForExist({ timeout: 30000 });
-		await keyboard.more.touchAction('tap');
-		await keyboard.one.touchAction('tap');
-		await keyboard.zero.touchAction('tap');
-		await keyboard.two.touchAction('tap');
-		await keyboard.zero.touchAction('tap');
-		await keyboard.three.touchAction('tap');
-		await keyboard.zero.touchAction('tap');
-		await keyboard.four.touchAction('tap');
-		await keyboard.zero.touchAction('tap');
+		await login.passwordInputField.addValue(variable.data.password);
 		await keyboard.returnKey.touchAction('tap');
 
 		await login.loginButton.waitForExist({ timeout: 30000 });
