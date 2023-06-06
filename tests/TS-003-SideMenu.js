@@ -1,3 +1,4 @@
+const allureReporter = require('@wdio/allure-reporter').default;
 const expect = require('chai').expect;
 const mainMenu = require('../resources/pages/main-page/selector');
 const sideMenu = require('../resources/pages/side-menu/selector.js');
@@ -5,6 +6,9 @@ const assert = require('../resources/pages/side-menu/assert.js');
 
 describe('TS-003 | Side Menu', function() {
 	it('TC-001 | Check all content is loaded', async function() {
+		allureReporter.addTag('Sanity Test');
+		allureReporter.addSeverity('normal');
+
 		await mainMenu.sideMenu.waitForExist({ timeout: 30000 });
 		await mainMenu.sideMenu.touchAction('tap');
 
@@ -25,6 +29,9 @@ describe('TS-003 | Side Menu', function() {
 	});
 
 	it('TC-002 | The page is scrollable', async function() {
+		allureReporter.addTag('Sanity Test');
+		allureReporter.addSeverity('normal');
+
 		// eslint-disable-next-line no-undef
 		await driver.touchAction([
 			{action: 'press', x: 170, y: 412},
@@ -42,6 +49,9 @@ describe('TS-003 | Side Menu', function() {
 	});
 
 	it('TC-003 | Access "About Page"', async function() {
+		allureReporter.addTag('Sanity Test');
+		allureReporter.addSeverity('normal');
+
 		await sideMenu.about.waitForExist({ timeout: 30000 });
 		await sideMenu.about.touchAction('tap');
 	});

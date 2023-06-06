@@ -1,3 +1,4 @@
+const allureReporter = require('@wdio/allure-reporter').default;
 const expect = require('chai').expect;
 const mainMenu = require('../resources/pages/main-page/selector');
 const sideMenu = require('../resources/pages/side-menu/selector.js');
@@ -10,6 +11,9 @@ const variable = require('../resources/shared/variable.js');
 
 describe('TS-004 | Login & Logout', function() {
 	it('TC-001 | Check all content is loaded', async function() {
+		allureReporter.addTag('Sanity Test');
+		allureReporter.addSeverity('normal');
+
 		await mainMenu.sideMenu.waitForExist({ timeout: 30000 });
 		await mainMenu.sideMenu.touchAction('tap');
 
@@ -33,6 +37,9 @@ describe('TS-004 | Login & Logout', function() {
 	});
 
 	it('TC-002 | Success Login', async function() {
+		allureReporter.addTag('Sanity Test');
+		allureReporter.addSeverity('normal');
+
 		await login.usernameInputField.waitForExist({ timeout: 30000 });
 		await login.usernameInputField.touchAction('tap');
 		await keyboard.returnKey.waitForExist({ timeout: 30000 });
@@ -60,6 +67,9 @@ describe('TS-004 | Login & Logout', function() {
 	});
 
 	it('TC-003 | Success Logout', async function() {
+		allureReporter.addTag('Sanity Test');
+		allureReporter.addSeverity('normal');
+
 		await mainMenu.sideMenu.waitForExist({ timeout: 30000 });
 		await mainMenu.sideMenu.touchAction('tap');
 
