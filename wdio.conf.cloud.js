@@ -11,7 +11,7 @@ const cloudCapabilities = {
 	'appium:automationName': 'XCUITest', // or "XCUITest"
 	'appium:deviceOrientation': 'portrait',
 	'sauce:options': {
-		appiumVersion: '2.0.0-beta56',
+		appiumVersion: '2.0.0-beta66',
 		build: `ios.v1.${process.env.BUILD}`,
 		name: process.env.BUILDNAME,
 		public: 'public', // job visibility; public | team | private
