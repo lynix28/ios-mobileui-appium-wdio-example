@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   Testing:
     docker:
-      - image: pridecontrol/wdio:1.0.0
+      - image: pridecontrol/wdio:1.1.0
         auth:
           username: $USERNAME
           password: $PASSWORD
@@ -13,7 +13,7 @@ jobs:
           command: |
             echo "SAUCE_USERNAME=$SAUCE_USERNAME" > .env
             echo "SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY" >> .env
-            echo "BUILD=$CIRCLE_BUILD_NUM" >> .env
+            echo "BUILD=<< pipeline.number >>" >> .env
             echo "BUILDNAME=Testing" >> .env
             echo "$CIRCLE_BUILD_NUM"
       - run:
@@ -29,10 +29,57 @@ jobs:
           name: "Wrapping Test Result"
           command: |
             tar -cvf artifact.tar /app/allure-report/
+          when: always
       - store_artifacts:
           path: artifact.tar
+
+  Start-Testing-Notification:
+    docker:
+      - image: cimg/node:18.16.0
+    steps:
+      - checkout
+      - run:
+          name: "Install Node Package"
+          command: npm install dotenv run-func @penseapp/discord-notification
+      - run:
+          name: "Setup Environment"
+          command: |
+            echo "BUILD=<< pipeline.number >>" >> .env
+            echo "REPOSITORY_URL=$CIRCLE_REPOSITORY_URL" >> .env
+            echo "BUILD_URL=$CIRCLE_BUILD_URL" >> .env
+            echo "BRANCH=$CIRCLE_BRANCH" >> .env
+            echo "DISCORD_WEBHOOK=$DISCORD_WEBHOOK" >> .env
+      - run:
+          name: "Send Notification - Start Testing"
+          command: npx run-func discord-notification.js test "start"
+
+  Stop-Testing-Notification:
+    docker:
+      - image: cimg/node:18.16.0
+    steps:
+      - checkout
+      - run:
+          name: "Install Node Package"
+          command: npm install dotenv run-func @penseapp/discord-notification
+      - run:
+          name: "Setup Environment"
+          command: |
+            echo "BUILD=<< pipeline.number >>" >> .env
+            echo "REPOSITORY_URL=$CIRCLE_REPOSITORY_URL" >> .env
+            echo "BUILD_URL=$CIRCLE_BUILD_URL" >> .env
+            echo "BRANCH=$CIRCLE_BRANCH" >> .env
+            echo "DISCORD_WEBHOOK=$DISCORD_WEBHOOK" >> .env
+      - run:
+          name: "Send Notification - Stop Testing"
+          command: npx run-func discord-notification.js test "stop"
           
 workflows:
   Test-Workflow:
     jobs:
-      - Testing
+      - Start-Testing-Notification
+      - Testing:
+          requires:
+            - Start-Testing-Notification
+      - Stop-Testing-Notification:
+          requires:
+            - Testing
