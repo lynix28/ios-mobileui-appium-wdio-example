@@ -1,15 +1,22 @@
 /* eslint-disable no-console */
-let { join } = require('path');
+require('dotenv').config();
 const allure = require('allure-commandline');
 const list = require('./test.suite.list.js');
 
-const localCapabilities = {
+const cloudCapabilities = {
 	platformName: 'iOS', // or "iOS"
-	'appium:app': join(process.cwd(), './simulator-ios.zip'),
-	'appium:deviceName': 'iPhone8', // or "iPhone Simulator"
-	'appium:platformVersion': '16.4', // or "16.2" (for running iOS v16)
+	'appium:app': 'storage:filename=simulator-ios.zip',
+	'appium:deviceName': 'iPhone Simulator', // or "iPhone Simulator"
+	'appium:platformVersion': '16.2', // or "16.2" (for running iOS v16)
 	'appium:automationName': 'XCUITest', // or "XCUITest"
 	'appium:deviceOrientation': 'portrait',
+	'sauce:options': {
+		appiumVersion: '2.0.0-beta66',
+		build: `ios.v1.${process.env.BUILD}`,
+		name: process.env.BUILDNAME,
+		public: 'public', // job visibility; public | team | private
+		// passed: true
+	},
 };
 
 exports.config = {
@@ -20,7 +27,7 @@ exports.config = {
 	// WebdriverIO supports running e2e tests as well as unit and component tests.
 	runner: 'local',
     
-	port: 4723,
+	port: 443,
 	//
 	// ==================
 	// Specify Test Files
@@ -39,9 +46,7 @@ exports.config = {
 	//
 	specs: [
 		// ToDo: define location for spec files here
-		[
-			'./tests/TS-*.js'
-		]
+		'../tests/TS-*.js'
 	],
 
 	suites: list.testSuite,
@@ -65,13 +70,13 @@ exports.config = {
 	// and 30 processes will get spawned. The property handles how many capabilities
 	// from the same test should run tests.
 	//
-	maxInstances: 10,
+	maxInstances: 1,
 	//
 	// If you have trouble getting all important capabilities together, check out the
 	// Sauce Labs platform configurator - a great tool to configure your capabilities:
 	// https://saucelabs.com/platform/platform-configurator
 	//
-	capabilities: [ localCapabilities ],
+	capabilities: [ cloudCapabilities ],
 	//
 	// ===================
 	// Test Configurations
@@ -80,6 +85,7 @@ exports.config = {
 	//
 	// Level of logging verbosity: trace | debug | info | warn | error | silent
 	logLevel: 'info',
+	outputDir: './logs',
 	//
 	// Set specific log levels per logger
 	// loggers:
@@ -103,7 +109,7 @@ exports.config = {
 	// with `/`, the base url gets prepended, not including the path portion of your baseUrl.
 	// If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
 	// gets prepended directly.
-	baseUrl: '',
+	baseUrl: '/wd/hub',
 	//
 	// Default timeout for all waitFor* commands.
 	waitforTimeout: 10000,
@@ -119,7 +125,14 @@ exports.config = {
 	// Services take over a specific job you don't want to take care of. They enhance
 	// your test setup with almost no effort. Unlike plugins, they don't add new
 	// commands. Instead, they hook themselves up into the test process.
-	services: ['appium'],
+	user: process.env.SAUCE_USERNAME,
+	key: process.env.SAUCE_ACCESS_KEY,
+	region: 'us',
+	services: [
+		['sauce', {
+			sauceConnect: true
+		}]
+	],
     
 	// Framework you want to run your specs with.
 	// The following are supported: Mocha, Jasmine, and Cucumber
@@ -301,11 +314,6 @@ exports.config = {
 				() => reject(reportError),
 				5000);
 	
-			generation.on('error', function(error) { // handle errors properly with "error" event instead of "exit"
-				clearTimeout(generationTimeout);
-				reject(error);
-			});
-			
 			generation.on('exit', function(exitCode) {
 				clearTimeout(generationTimeout);
 	
