@@ -75,13 +75,13 @@ jobs:
           name: "Send Notification - Stop Testing"
           command: npx run-func discord-notification.js test "stop"
           
-workflows:
-  Test-Workflow:
-    jobs:
-      - Start-Testing-Notification
-      - Testing:
-          requires:
-            - Start-Testing-Notification
-      - Stop-Testing-Notification:
-          requires:
-            - Testing
+# workflows:
+  # Test-Workflow:
+  #   jobs:
+  #     - Start-Testing-Notification
+  #     - Testing:
+  #         requires:
+  #           - Start-Testing-Notification
+  #     - Stop-Testing-Notification:
+  #         requires:
+  #           - Testing

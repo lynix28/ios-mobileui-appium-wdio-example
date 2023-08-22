@@ -1,6 +1,16 @@
+# [MERGED TO OTHER PROJECT]
 # iOS MobileUI Automation Test Project Example with Appium & WebdriverIO
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/lynix28/ios-mobileui-appium-wdio-example/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/lynix28/ios-mobileui-appium-wdio-example/tree/master)
 [![SauceLabs](https://img.shields.io/badge/integrated%20to-SauceLabs-red)](https://app.saucelabs.com/u/oauth-lynixizunia-7ba4e)
+
+---
+
+This project example is merged to: https://github.com/lynix28/mobileui-appium-wdio-example
+
+For further update check on the new repo
+
+
+---
 
 <h3><ins>Requirements</h3>
   
